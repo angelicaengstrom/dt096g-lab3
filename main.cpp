@@ -2,7 +2,7 @@
 #include <complex>
 
 namespace math {
-    template<int EXP, typename T = decltype(EXP), typename enable = void>
+    template<int EXP, typename T = double, typename enable = void>
     struct pow {
         constexpr T operator()(T mantissa) {
             pow<EXP - 1, T> next;
@@ -49,6 +49,9 @@ struct hanoi<0, from, to, aux>{};
 
 
 int main(){
+    math::pow<-3> t;
+    std::cout << t(2) << std::endl;
+
     std::complex<int> c(3, 4);
     math::pow<3, std::complex<int>> p;
     std::cout << std::real(p(c)) << ((std::imag(p(c)) > 0) ? "+":"")  << std::imag(p(c)) << "i" << std::endl;
